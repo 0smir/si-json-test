@@ -28,7 +28,28 @@ $(document).ready(function(){
     var countryList = JSON.parse(jsonDataString);
     console.log(countryList[0].title);
 
-    
+    // var uk = countryList[0],
+    //     fr = countryList[1],
+    //     spn = countryList[2],
+    //     grm = countryList[3];
+
+    // countryList.forEach(function (item, i, countryList) {
+    //
+    //
+    // });
+
+    function compareByAlphabet(a, b) {
+        if(a.title < b.title) return -1;
+        if(a.title > b.title) return 1;
+        return 0;
+
+    };
+
+    countryList.sort(compareByAlphabet);
+    console.log(countryList);
+
+    countryList.reverse();
+    console.log(countryList);
 
 
 });
