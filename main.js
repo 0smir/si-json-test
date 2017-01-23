@@ -72,7 +72,6 @@ $(document).ready(function(){
     $("#delelement").on("click", function () {
         var checkedForDel = $("input:checked"),
             del = $(checkedForDel).closest(".accordion-item", "#accordion");
-        
         $(del).each(function () {
             $(this).remove();
         });
