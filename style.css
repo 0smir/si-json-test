@@ -1,0 +1,32 @@
+/*accordion styles*/
+
+.accordion-item {
+    list-style: none;
+}
+
+.title-wrapper + .description {
+    display: none;
+}
+
+.title-wrapper.active + .description {
+    display: block;
+}
+input {
+    float: left;
+}
+
+.title {
+    display: block;
+    float: left;
+    margin-left: 15px;
+    width: 80%;
+    border: 1px solid red;
+}
+
+input:checked + a {
+    background: pink;
+}
+
+input[type=checkbox]:checked .accordion-item {
+    border: 1px solid blue;
+}
