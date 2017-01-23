@@ -26,7 +26,3 @@ input {
 input:checked + a {
     background: pink;
 }
-
-input[type=checkbox]:checked .accordion-item {
-    border: 1px solid blue;
-}

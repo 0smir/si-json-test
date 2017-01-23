@@ -63,10 +63,21 @@ $(document).ready(function(){
 
 
 
-$("#accordion").find(".accordion-item input:checked").css("border","1px solid green");
+   var checkedForDel = $("input:checked");
+    console.log(checkedForDel);
+
+    // .closest(".accordion-item", "#accordion").css("border","1px solid green");
 
 
+    $("#delelement").on("click", function () {
+        var checkedForDel = $("input:checked"),
+            del = $(checkedForDel).closest(".accordion-item", "#accordion");
+        
+        $(del).each(function () {
+            $(this).remove();
+        });
 
+    });
 
 
 
