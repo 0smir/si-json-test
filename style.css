@@ -1,4 +1,7 @@
 /*accordion styles*/
+#accordion{
+    padding: 0;
+}
 
 .accordion-item {
     list-style: none;
@@ -15,14 +18,30 @@ input {
     float: left;
 }
 
-.title {
+.accordion-item {
     display: block;
     float: left;
-    margin-left: 15px;
-    width: 80%;
-    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+.title {
+    display: block;
+    margin-left: 30px;
+}
+
+input[type=text]{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 input:checked + a {
     background: pink;
+}
+
+.sort-panel{
+    margin-bottom: 20px;
 }
