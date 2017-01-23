@@ -22,11 +22,11 @@ $(document).ready(function(){
 
 //json-data as string
     var jsonDataString = JSON.stringify(jsonData);
-    console.log(jsonData);
+    // console.log(jsonData);
 
 
     var countryList = JSON.parse(jsonDataString);
-    console.log(countryList[0].title);
+    // console.log(countryList[0].title);
 
 
     function generateHtml(data) {
@@ -37,7 +37,6 @@ $(document).ready(function(){
     generateHtml(countryList);
 
 
-    // });
 
 //sort by alphabet
     function compareByAlphabet(a, b) {
@@ -47,14 +46,7 @@ $(document).ready(function(){
 
     };
 
-    countryList.sort(compareByAlphabet);
-    // console.log(countryList);
-
-//alphabet revert sort
-    countryList.reverse();
-    // console.log(countryList);
-
-    //accordion
+//accordion
     $("#accordion .title").click(function (event) {
         event.preventDefault();
         $(this).parent(".title-wrapper").toggleClass("active");
@@ -66,9 +58,7 @@ $(document).ready(function(){
    var checkedForDel = $("input:checked");
     console.log(checkedForDel);
 
-    // .closest(".accordion-item", "#accordion").css("border","1px solid green");
-
-
+//fucktion for delete item from accordion
     $("#delelement").on("click", function () {
         var checkedForDel = $("input:checked"),
             del = $(checkedForDel).closest(".accordion-item", "#accordion");
@@ -76,6 +66,28 @@ $(document).ready(function(){
             $(this).remove();
         });
 
+    });
+
+    function cleanAccordion() {
+        var item = $(".accordion-item");
+        $(item).each(function () {
+            $(this).remove();
+        });
+    }
+
+
+//function alphabet sort
+    $("#sort").on("click", function () {
+        countryList.sort(compareByAlphabet);
+        cleanAccordion();
+        generateHtml(countryList);
+    });
+
+//alphabet revert sort
+    $("#revertsort").on("click", function () {
+        countryList.reverse();
+        cleanAccordion();
+        generateHtml(countryList);
     });
 
 
