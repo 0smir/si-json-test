@@ -20,7 +20,7 @@ $(document).ready(function(){
     ];
 
 
-
+//json-data as string
     var jsonDataString = JSON.stringify(jsonData);
     console.log(jsonData);
 
@@ -28,16 +28,18 @@ $(document).ready(function(){
     var countryList = JSON.parse(jsonDataString);
     console.log(countryList[0].title);
 
-    // var uk = countryList[0],
-    //     fr = countryList[1],
-    //     spn = countryList[2],
-    //     grm = countryList[3];
 
-    // countryList.forEach(function (item, i, countryList) {
-    //
-    //
+    function generateHtml(data) {
+        var template = Handlebars.compile( $('#handlebars-accordion').html() );
+        console.log(countryList);
+        $("#accordion").append(template(countryList));
+    }
+    generateHtml(countryList);
+
+
     // });
 
+//sort by alphabet
     function compareByAlphabet(a, b) {
         if(a.title < b.title) return -1;
         if(a.title > b.title) return 1;
@@ -46,10 +48,27 @@ $(document).ready(function(){
     };
 
     countryList.sort(compareByAlphabet);
-    console.log(countryList);
+    // console.log(countryList);
 
+//alphabet revert sort
     countryList.reverse();
-    console.log(countryList);
+    // console.log(countryList);
+
+    //accordion
+    $("#accordion .title").click(function (event) {
+        event.preventDefault();
+        $(this).parent(".title-wrapper").toggleClass("active");
+    });
+
+
+
+
+$("#accordion").find(".accordion-item input:checked").css("border","1px solid green");
+
+
+
+
+
 
 
 });
