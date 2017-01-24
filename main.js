@@ -21,21 +21,12 @@ $(document).ready(function(){
 
 
 //json-data as string
-    var jsonDataString = JSON.stringify(jsonData);
+//     var jsonDataString = JSON.stringify(jsonData);
     // console.log(jsonData);
 
 
-    var countryList = JSON.parse(jsonDataString);
+    // var countryList = JSON.parse(jsonDataString);
     // console.log(countryList[0].title);
-
-
-    function generateHtml(data) {
-        var template = Handlebars.compile( $('#handlebars-accordion').html() );
-        console.log(countryList);
-        $("#accordion").append(template(countryList));
-    }
-    generateHtml(countryList);
-
 
 
 //sort by alphabet
@@ -47,13 +38,11 @@ $(document).ready(function(){
     };
 
 //accordion
-    $("#accordion .title").click(function (event) {
+    $("#accordion .title").on("click", function () {
         event.preventDefault();
+        // event.stopPropagation();
         $(this).parent(".title-wrapper").toggleClass("active");
     });
-
-
-
 
    var checkedForDel = $("input:checked");
     console.log(checkedForDel);
@@ -78,19 +67,43 @@ $(document).ready(function(){
 
 //function alphabet sort
     $("#sort").on("click", function () {
-        countryList.sort(compareByAlphabet);
+        jsonData.sort(compareByAlphabet);
         cleanAccordion();
-        generateHtml(countryList);
+        generateHtml(jsonData);
     });
 
 //alphabet revert sort
     $("#revertsort").on("click", function () {
-        countryList.reverse();
+        jsonData.reverse();
         cleanAccordion();
-        generateHtml(countryList);
+        generateHtml(jsonData);
     });
 
+//
+    $("#add-country").on("click", function () {
+        var countryName = $("input[name=country-name]").val(),
+            countryDescription = $("input[name=country-description]").val();
+        console.log(countryName);
+        console.log(countryDescription);
 
+        //create new object with custom data
+        var newCountry = new Object();
+            newCountry["title"] = countryName;
+            newCountry["text"] = countryDescription;
+            console.log(newCountry);
+        //add new element in country array
+        jsonData.push(newCountry);
+        console.log(jsonData);
+        cleanAccordion();
+        generateHtml(jsonData);
+    });
+
+    function generateHtml(data) {
+        var template = Handlebars.compile( $('#handlebars-accordion').html() );
+        console.log(data);
+        $("#accordion").append(template(data));
+    }
+    generateHtml(jsonData);
 
 
 });
