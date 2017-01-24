@@ -37,12 +37,6 @@ $(document).ready(function(){
 
     };
 
-//accordion
-    $("#accordion .title").on("click", function () {
-        event.preventDefault();
-        // event.stopPropagation();
-        $(this).parent(".title-wrapper").toggleClass("active");
-    });
 
    var checkedForDel = $("input:checked");
     console.log(checkedForDel);
@@ -104,6 +98,15 @@ $(document).ready(function(){
         $("#accordion").append(template(data));
     }
     generateHtml(jsonData);
+
+    //accordion
+    $("#accordion .title").on("click", function () {
+        event.preventDefault();
+        // event.stopPropagation();
+        console.log($(this).parent(".title-wrapper"));
+        $(this).parent(".title-wrapper").toggleClass("active");
+    });
+
 
 
 });
