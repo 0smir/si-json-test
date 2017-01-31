@@ -1,4 +1,7 @@
 /*accordion styles*/
+body {
+    padding: 80px 0 0 0;
+}
 #accordion{
     padding: 0;
 }
@@ -7,11 +10,11 @@
     list-style: none;
 }
 
-.title-wrapper + .description {
+.accordion-item > .description {
     display: none;
 }
 
-.title-wrapper.active + .description {
+.accordion-item.active >.description {
     display: block;
 }
 input {
