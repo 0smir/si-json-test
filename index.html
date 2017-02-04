@@ -20,28 +20,25 @@
 					<button class="btn btn-revertsort btn-default">Sort z-a</button>
 				</div>
 				<p>Tell about your country</p>
-				<div class="addinfo-panel">
+				<form class="addinfo-panel">
 					<input type="text" name="country-name" placeholder="add name of country" required>
 					<input type="text" name="country-description" placeholder="a few words about country">
 					<button class="btn btn-add-country btn-default">add one more country</button>
 
-				</div>
+				</form>
 			</div>
 
 			<div class="col-md-8">
-				<ul id="accordion" class="panel-group clearfix" role="tablist" aria-multiselectable="true">
-					<script id="handlebars-accordion" type="text/x-handlebars-template">
-						{{#each this}}
-						<li class="accordion-item clearfix">
-							<div class="title-wrapper clearfix">
-								<input type="checkbox">
-								<h4 class="title">{{title}}</h4>
-							</div>
-							<div class="description">{{text}}</div>
-						</li>
-						{{/each}}
-					</script>
-				</ul>
+				<div id="accordion" class="panel-group clearfix">
+					<h4 class="title"></h4>
+					<p></p>
+					<h4 class="title"></h4>
+					<p></p>
+					<h4 class="title"></h4>
+					<p></p>
+					<h4 class="title"></h4>
+					<p></p>
+				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<p class="text-center">Check items to delete</p>
@@ -60,7 +57,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="main.js"></script>
 <script src="handlebars-v4.0.5.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

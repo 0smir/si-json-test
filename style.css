@@ -10,30 +10,23 @@ body {
     list-style: none;
 }
 
-.accordion-item > .description {
-    display: none;
-}
-
-.accordion-item.active >.description {
-    display: block;
-}
-input {
-    float: left;
-}
-
-.accordion-item {
-    display: block;
-    float: left;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border: 1px solid gray;
-}
-
 .title {
     display: block;
     margin-left: 30px;
 }
+
+.title + p {
+    display: none;
+}
+
+.title.active + p {
+    display: block;
+}
+
+h4 {
+    background: lightblue;
+}
+
 
 input[type=text]{
     width: 100%;
@@ -48,3 +41,6 @@ input:checked + a {
 .sort-panel{
     margin-bottom: 20px;
 }
+
+
+

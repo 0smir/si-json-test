@@ -17,8 +17,19 @@ $(document).ready(function(){
         {
             "title":"Germany",
             "text":"Germany, officially the Federal Republic of Germany (German: Bundesrepublik Deutschland), is a federal parliamentary republic in western-central Europe."}
-    ];
-    
+    ],
+    accordion = $('#accordion');
+
+    // add tabs of accordion
+    function createAccordion() {
+        console.log("#accordion h4");
+        $("#accordion h4").each(function (i) {
+            $(this).text(countryList[i].title);
+            $(this).next("p").text(countryList[i].text);
+        });
+    };
+    createAccordion();
+
 
 //sort by alphabet
     function compareByAlphabet(a, b) {
@@ -27,27 +38,6 @@ $(document).ready(function(){
         return 0;
 
     };
-
-
-   var checkedForDel = $("input:checked");
-    console.log(checkedForDel);
-
-//function for delete item from accordion
-    $(".btn-delelement").on("click", function () {
-        var checkedForDel = $("input:checked"),
-            del = $(checkedForDel).closest(".accordion-item", "#accordion");
-        $(del).each(function () {
-            $(this).remove();
-        });
-
-    });
-
-    function cleanAccordion() {
-        var item = $(".accordion-item");
-        $(item).each(function () {
-            $(this).remove();
-        });
-    }
 
 
 //function alphabet sort
@@ -64,7 +54,20 @@ $(document).ready(function(){
         generateHtml(countryList);
     });
 
-//
+
+    function cleanAccordion() {
+        $("#accordion h4").each(function (i) {
+            $(this).empty();
+            $(this).next("p").empty();
+        });
+    }
+
+    function addAccordionItem() {
+        $("#accordion").append("<h4 class='title'></h4><p></p>");
+
+    }
+
+
     $(".btn-add-country").on("click", function () {
         var countryName = $("input[name=country-name]").val(),
             countryDescription = $("input[name=country-description]").val();
@@ -80,21 +83,26 @@ $(document).ready(function(){
         countryList.push(newCountry);
         console.log(countryList);
         cleanAccordion();
-        generateHtml(countryList);
+        // return(countryList)
+        addAccordionItem();
+        createAccordion(countryList);
+        $(".addinfo-panel").reset();
     });
 
-    function generateHtml(data) {
-        var template = Handlebars.compile( $('#handlebars-accordion').html() );
-        console.log(data);
-        $("#accordion").append(template(data));
-    }
-    generateHtml(countryList);
 
     //accordion
-    $("#accordion .title").on("click", function () {
-        $(this).parent(".title-wrapper").parent(".accordion-item")
-                .toggleClass("active").siblings().removeClass("active");
+    // $("#accordion .title").on("click", function () {
+    //     $(this).toggleClass("active").siblings().removeClass("active");
+    // });
+
+    // new accordion
+    $("#accordion").on("click", function () {
+        var targetElement = $(event.target);
+        if (targetElement.is(".title")){
+            targetElement.toggleClass("active").siblings().removeClass("active");
+        }
     });
+
 
 
 
