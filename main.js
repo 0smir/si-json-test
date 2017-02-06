@@ -17,8 +17,7 @@ $(document).ready(function(){
         {
             "title":"Germany",
             "text":"Germany, officially the Federal Republic of Germany (German: Bundesrepublik Deutschland), is a federal parliamentary republic in western-central Europe."}
-    ],
-    accordion = $('#accordion');
+    ];
 
     // add tabs of accordion
     function createAccordion() {
@@ -39,20 +38,13 @@ $(document).ready(function(){
 
     };
 
+    //revert sort by alphabet
+    function compareByRevertAlphabet(a, b) {
+        if(a.title < b.title) return 1;
+        if(a.title > b.title) return -1;
+        return 0;
 
-//function alphabet sort
-    $(".btn-sort").on("click", function () {
-        countryList.sort(compareByAlphabet);
-        cleanAccordion();
-        generateHtml(countryList);
-    });
-
-//alphabet revert sort
-    $(".btn-revertsort").on("click", function () {
-        countryList.reverse();
-        cleanAccordion();
-        generateHtml(countryList);
-    });
+    };
 
 
     function cleanAccordion() {
@@ -67,12 +59,24 @@ $(document).ready(function(){
 
     }
 
+    function cleanInput() {
+        $("input[name=country-name]").val('');
+        $("input[name=country-description]").val('');
+    }
+
 
     $(".btn-add-country").on("click", function () {
         var countryName = $("input[name=country-name]").val(),
             countryDescription = $("input[name=country-description]").val();
         console.log(countryName);
         console.log(countryDescription);
+
+        function capitalize() {
+            var countryNameFirstLetter = countryName.charAt(0).toUpperCase(),
+                countryNameNoFirstLetter = countryName.substring(1);
+            countryName = countryNameFirstLetter + countryNameNoFirstLetter;
+        }
+        capitalize();
 
         //create new object with custom data
         var newCountry = new Object();
@@ -83,17 +87,25 @@ $(document).ready(function(){
         countryList.push(newCountry);
         console.log(countryList);
         cleanAccordion();
-        // return(countryList)
         addAccordionItem();
         createAccordion(countryList);
-        $(".addinfo-panel").reset();
+        cleanInput();
+        return(countryList);
     });
 
+    //function alphabet sort
+    $(".btn-sort").on("click", function () {
+        countryList.sort(compareByAlphabet);
+        cleanAccordion();
+        createAccordion(countryList);
+    });
 
-    //accordion
-    // $("#accordion .title").on("click", function () {
-    //     $(this).toggleClass("active").siblings().removeClass("active");
-    // });
+    //alphabet revert sort
+    $(".btn-revertsort").on("click", function () {
+        countryList.sort(compareByRevertAlphabet);
+        cleanAccordion();
+        createAccordion(countryList);
+    });
 
     // new accordion
     $("#accordion").on("click", function () {
@@ -102,8 +114,5 @@ $(document).ready(function(){
             targetElement.toggleClass("active").siblings().removeClass("active");
         }
     });
-
-
-
 
 });
